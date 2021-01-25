@@ -75,7 +75,7 @@ function ImportAccount() {
           </Form>
         </Modal>
       {/* Seed */}
-        <Modal footer={null} title="Import From Mnemonic" visible={ModalSeed} onCancel={() => setModalSeed(false)}>
+        <Modal footer={null} title="Import From Seed" visible={ModalSeed} onCancel={() => setModalSeed(false)}>
           <Form
             onFinish={CreateFromSeed}
           >

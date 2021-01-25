@@ -17,7 +17,7 @@ import BN from 'bn.js';
 
 function Transaction() {
   const AAA = '5G1oFikccqAPjtYrpBFVHokSKTRWX6oCnXRayRw8REgP7Da8';
-  const BBB = '5FJ38T4C4bP8eVdBVhSXmiZcNqaPqaNWEbPdtMhZQazVq6ZK';
+  const CCC = '5FJ38T4C4bP8eVdBVhSXmiZcNqaPqaNWEbPdtMhZQazVq6ZK';
 
   const send = async() => {
     const wsProvider = new WsProvider('wss://rpc-testnet.selendra.org');
@@ -31,15 +31,18 @@ function Transaction() {
     
     // const pair = keyring.addFromAddress(BBB);
 
-    let publicKey = keyring.decodeAddress('5G1oFikccqAPjtYrpBFVHokSKTRWX6oCnXRayRw8REgP7Da8');
+    // let publicKey = keyring.decodeAddress('5G1oFikccqAPjtYrpBFVHokSKTRWX6oCnXRayRw8REgP7Da8');
     // console.log(publicKey);
     // encode publicKey to ss58 address
     // const address = keyring.encodeAddress(publicKey);
     // console.log(address)
-    const pair = keyring.getPair(publicKey);
+    // const pair = keyring.getPair(publicKey);
     // const pair = keyring.createFromUri('piano harsh amount merit push aware satoshi zero man employ puzzle twist')
-    console.log(pair);
+    // console.log(pair);
 
+    const alicePair = keyring.getPair('5G1oFikccqAPjtYrpBFVHokSKTRWX6oCnXRayRw8REgP7Da8');
+    alicePair.decodePkcs8('123456');
+    
     // const allInjected = await web3Enable('dapp');
     // const allAccounts = await web3Accounts();
     // const SENDER = '5G1oFikccqAPjtYrpBFVHokSKTRWX6oCnXRayRw8REgP7Da8';
@@ -57,8 +60,8 @@ function Transaction() {
     
     // Create a extrinsic, transferring 12345 units to Bob
     const transfer = await api.tx.balances
-      .transfer(BBB, x.toFixed())
-      .signAndSend(pair, (result) => {
+      .transfer(CCC, x.toFixed())
+      .signAndSend(alicePair, (result) => {
         console.log(`Current status is ${result.status}`);
       })
   } 
