@@ -4,7 +4,7 @@ import { Button, Form, Input } from 'antd';
 import { ApiPromise, WsProvider } from '@polkadot/api';
 import keyring from '@polkadot/ui-keyring';
 import BigNumber from "bignumber.js";
-import { hexToU8a, u8aToHex } from "@polkadot/util";
+import { formatBalance } from '@polkadot/util';
 
 import {
   web3Accounts,
@@ -16,18 +16,15 @@ import {
 import BN from 'bn.js';
 
 function Transaction() {
-  const AAA = '5G1oFikccqAPjtYrpBFVHokSKTRWX6oCnXRayRw8REgP7Da8';
-  const CCC = '5FJ38T4C4bP8eVdBVhSXmiZcNqaPqaNWEbPdtMhZQazVq6ZK';
+  const AAA = '5C5r8zAt6A1PKWWD22XKhpBVVW72JRn5p8BxSpdYKVbZT8PW';
+  const CCC = '5Fsz6nTg9vAk8emFUZBy9p1U9ssXqzkY8C8fVNoAhu9W4Uby';
 
   const send = async() => {
     const wsProvider = new WsProvider('wss://rpc-testnet.selendra.org');
     const api = await ApiPromise.create({ provider: wsProvider });
-    // const keyring = new Keyring({ type: 'sr25519' });
 
-    const instance = (10 ** api.registry.chainDecimals);
-
-    let x = new BigNumber(instance);
-    // console.log(x.toFixed())
+    let chainDecimals = (10 ** api.registry.chainDecimals);
+    let x = ((10 * chainDecimals));
     
     // const pair = keyring.addFromAddress(BBB);
 
@@ -40,7 +37,7 @@ function Transaction() {
     // const pair = keyring.createFromUri('piano harsh amount merit push aware satoshi zero man employ puzzle twist')
     // console.log(pair);
 
-    const alicePair = keyring.getPair('5G1oFikccqAPjtYrpBFVHokSKTRWX6oCnXRayRw8REgP7Da8');
+    const alicePair = keyring.getPair(AAA);
     alicePair.decodePkcs8('123456');
     
     // const allInjected = await web3Enable('dapp');

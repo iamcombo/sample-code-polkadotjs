@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { hexToU8a, u8aToHex } from "@polkadot/util";
+import { u8aToHex } from "@polkadot/util";
 import { ApiPromise, WsProvider } from '@polkadot/api';
-import keyring from '@polkadot/ui-keyring';
+import { Link } from 'react-router-dom';
 
-function AccountLoad({acc}) {
+import { Button, Row, Col } from 'antd';
+
+export default function AccountLoad({ acc }) {
   const [balanceAvailable, setBalanceAvailable] = useState();
   const [nonce, setNonce] = useState();
 
@@ -22,21 +24,25 @@ function AccountLoad({acc}) {
 
   return (
     <div>
-      {/* name */}
+      {/* name, address, public_key, type, transaction, balance */}
       <p>Name: {acc.meta.name}</p>
-      {/* address */}
       <p>Address: {acc.address}</p>
-      {/* public key */}
       <p>Public Key: {u8aToHex(acc.publicKey)}</p>
-      {/* type */}
       <p>Type: {acc.type}</p>
-      {/* transaction */}
       <p>Transaction: {nonce}</p>
-      {/* balance */}
       <p>Balance: {balanceAvailable}</p>
-      <hr />
+      <br/>
+      <Row>
+        <Col>
+          <Link>
+            <Button>Backup Account</Button>
+          </Link>
+        </Col>
+        <Col offset={1}>
+          <Button>Change Password</Button>
+        </Col>
+      </Row>
+      <hr/>
     </div>
   )
 }
-
-export default AccountLoad;

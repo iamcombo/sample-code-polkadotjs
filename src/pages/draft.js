@@ -1,18 +1,23 @@
-import { KeyringPair } from '@polkadot/keyring/types';
-import { SubmittableExtrinsic } from '@polkadot/api/types';
+import React from 'react';
+import { Keyring } from '@polkadot/keyring';
+import { mnemonicGenerate } from '@polkadot/util-crypto';
 
-const SignAndSend = async() => {
-  signAsync(pairOrAddress, options);
-  // queueSetTxStatus(currentItem.id, 'sending'); 
-  const unsubscribe = await tx.send(handleTxResults('signAndSend', queueSetTxStatus, currentItem, () => {
-    unsubscribe();
-  }));
+function Draft() {
+  const keyring = new Keyring({ ss58Format: 2 });
+  const mnemonic = mnemonicGenerate();
+  // create & add the pair to the keyring with the type and some additional
+  // metadata specified
+  const pair = keyring.addFromUri(mnemonic, { name: 'second pair' }, 'ed25519');
 
-  const pair = keyring.getPair(publicKey);
+  // the pair has been added to our keyring
+  console.log(keyring.pairs.length, 'pairs available');
+  // log the name & address (the latter encoded with the ss58Format)
+  console.log(pair.meta.name, 'has address', pair.address);
+  console.log('has Type', pair.type );
+  console.log(mnemonic);
+  return (
+    <div></div>
+  )
 }
 
-const signAsync = async() => {
-  await signAsync(pairOrAddress, options);
-
-  return toJSON();
-}
+export default Draft;

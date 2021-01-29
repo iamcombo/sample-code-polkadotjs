@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { Menu } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 

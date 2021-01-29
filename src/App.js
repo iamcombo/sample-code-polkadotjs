@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import Transaction from './pages/Transaction';
 import CreateAccount from './pages/CreateAccount';
 import ImportAccount from './pages/ImportAccount';
+import Draft from './pages/draft';
 
 import './App.css';
 import {
@@ -24,6 +25,7 @@ export default function App() {
             <Route exact path='/transaction' component={Transaction} />
             <Route exact path='/createaccount' component={CreateAccount} />
             <Route exact path='/importaccount' component={ImportAccount} />
+            <Route exact path='/draft' component={Draft} />
           </Switch>
         </div>
       </Router>
